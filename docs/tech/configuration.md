@@ -1,4 +1,4 @@
-# Node-TS-Api-Base
+# LACPass key manager
 
 This project includes the boilerplate for a basic rest-api made in Node.JS with Express + Typescript.
 
@@ -79,13 +79,13 @@ The following commands will `build and run` a Docker image ready for production 
 #### Build Docker image
 
 ```
-docker build -f Dockerfile.prod -t node-ts-api-base .
+docker build -f Dockerfile.prod -t laccpass-key-manager .
 ```
 
 #### Run docker image (you need to add .env file as param)
 
 ```
-docker run --rm --env-file=.env.prod -p 3000:3000 --name node-api node-ts-api-base
+docker run --rm --env-file=.env.prod -p 3000:3000 --name node-api laccpass-key-manager
 ```
 
 ### Fix issue at build docker image (dependencies to install bcrypt are not providede in alpine version of node)
