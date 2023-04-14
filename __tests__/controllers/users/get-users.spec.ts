@@ -60,7 +60,7 @@ describe('requesting all users', () => {
   });
 
   it('returns http code 404 for non-existing user', async () => {
-    const randomId = Math.round(user.id + (1 + Math.random() * 10));
+    const randomId = 'someRandomId';
     const response = await request(app).get(`${API}/users/${randomId}`);
     expect(response.status).toBe(404);
     expect(response.body).toStrictEqual(
