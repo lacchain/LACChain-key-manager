@@ -11,10 +11,11 @@ export class Secp256k1Service {
     return this.secp256k1Repository.findOne(id);
   }
 
-  createKey(secp256k1: Secp256k1) {
+  async createKey(secp256k1: Secp256k1) {
     const account = ethers.Wallet.createRandom();
     secp256k1.key = account.privateKey;
-    return this.secp256k1Repository.insert(secp256k1);
+    await this.secp256k1Repository.insert(secp256k1);
+    return { keyId: secp256k1.keyId, address: account.address };
   }
 
   deleteKey(id: string) {

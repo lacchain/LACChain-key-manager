@@ -20,7 +20,7 @@ const config: ConnectionOptions = {
   database: TYPEORM_DATABASE,
   port: Number.parseInt(TYPEORM_PORT || '5432'),
   synchronize: TYPEORM_SYNCHRONIZE === 'true',
-  logging: TYPEORM_LOGGING === 'true',
+  logging: false,
   entities: [
     PRODUCTION_ENV ? 'dist/src/entities/**/*.js' : 'src/entities/**/*.ts'
   ],
