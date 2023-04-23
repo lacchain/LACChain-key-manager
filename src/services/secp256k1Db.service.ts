@@ -3,16 +3,17 @@ import { getRepository } from 'typeorm';
 import { Secp256k1 } from '../entities/secp256k1.entity';
 import { ethers } from 'ethers';
 import { EntityMapper } from '@clients/mapper/entityMapper.service';
+import { Secp256k1Service, key } from './interfaces/Secp256k1';
 
 @Service()
-export class Secp256k1Service {
+export class Secp256k1DbService implements Secp256k1Service {
   private readonly secp256k1Repository = getRepository<Secp256k1>(Secp256k1);
 
   show(id: string) {
     return this.secp256k1Repository.findOne(id);
   }
 
-  async createKey() {
+  async createKey(): Promise<key> {
     const secp256k1 = EntityMapper.mapTo(Secp256k1, {});
     const account = ethers.Wallet.createRandom();
     secp256k1.key = account.privateKey;
