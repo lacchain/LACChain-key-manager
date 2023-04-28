@@ -1,5 +1,19 @@
 import { config } from 'dotenv';
+import { LogLevel } from 'typescript-logging';
+import { Log4TSProvider } from 'typescript-logging-log4ts-style';
 config({ path: `.env.${process.env.ENV || 'dev'}` });
+
+export const log4TSProvider = Log4TSProvider.createProvider(
+  'KeyManagerProvider',
+  {
+    level: LogLevel.Debug,
+    groups: [
+      {
+        expression: new RegExp('.+')
+      }
+    ]
+  }
+);
 
 // If .env wasn't provided then exit
 if (!process.env.PORT) {

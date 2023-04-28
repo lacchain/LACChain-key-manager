@@ -11,4 +11,8 @@ export class Secp256k1 extends Base {
   @Column()
   @Index({ unique: true })
   key!: string;
+
+  @Column()
+  @Index({ unique: true })
+  address!: string;
 }
