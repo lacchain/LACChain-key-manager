@@ -1,6 +1,6 @@
 {
   "name": "lacpass-key-manager",
-  "version": "0.0.11",
+  "version": "0.0.15",
   "description": "Rest api for laccpass key manager",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -68,6 +68,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@lacchain/gas-model-provider": "^1.0.1",
     "aws-sdk": "^2.1116.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",

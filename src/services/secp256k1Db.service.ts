@@ -25,6 +25,7 @@ export class Secp256k1DbService implements Secp256k1Service {
     const secp256k1 = EntityMapper.mapTo(Secp256k1, {});
     const account = ethers.Wallet.createRandom();
     secp256k1.key = account.privateKey;
+    secp256k1.address = account.address;
     await this.secp256k1Repository.insert(secp256k1);
     return { keyId: secp256k1.keyId, address: account.address };
   }

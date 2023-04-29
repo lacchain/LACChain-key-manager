@@ -8,18 +8,18 @@ import {
   IEthereumTransaction,
   ISignedTransaction
 } from 'src/interfaces/signer/signer.interface';
-import { Secp256k1SignTransactionService } from './interfaces/Secp256k1.signer';
+import { Secp256k1SignTransactionService } from './interfaces/secp256k1.signer';
 
 @Service()
 export class Secp256k1SignTransactionServiceDb
 implements Secp256k1SignTransactionService {
   private readonly secp256k1DbService = new Secp256k1DbService();
   log = log4TSProvider.getLogger('ethereum-signer');
-  async signEthereumTransaction(
-    signEthereumTransaction: IEthereumTransaction
+  async signEthereumBasedTransaction(
+    signEthereumBasedTransaction: IEthereumTransaction
   ): Promise<ISignedTransaction> {
     const { signerAddress, fullyPopulatedTransactionRequest } =
-      signEthereumTransaction;
+      signEthereumBasedTransaction;
     if (!signerAddress || !isAddress(signerAddress)) {
       const message = ErrorsMessages.MISSING_PARAMS;
       this.log.info(message);
