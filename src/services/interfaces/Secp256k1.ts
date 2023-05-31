@@ -1,3 +1,8 @@
+export interface ISecp256k1FullKey {
+  keyId: string;
+  address: string;
+  key: string;
+}
 export type key = {
   keyId: string;
   address: string;
