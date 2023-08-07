@@ -27,7 +27,11 @@ export class Secp256k1DbService implements Secp256k1Service {
     secp256k1.key = account.privateKey;
     secp256k1.address = account.address;
     await this.secp256k1Repository.insert(secp256k1);
-    return { keyId: secp256k1.keyId, address: account.address };
+    return {
+      keyId: secp256k1.keyId,
+      address: account.address,
+      publicKey: account.publicKey
+    };
   }
 
   deleteKey(id: string) {

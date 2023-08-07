@@ -6,6 +6,7 @@ export interface ISecp256k1FullKey {
 export type key = {
   keyId: string;
   address: string;
+  publicKey: string;
 };
 export interface Secp256k1Service {
   show(id: string): Promise<any>;
