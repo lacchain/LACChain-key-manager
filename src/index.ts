@@ -12,3 +12,7 @@ export {
   ISignedTransaction,
   ILacchainTransaction
 } from './interfaces/signer/signer.interface';
+
+export { DidJwtDbService } from './services/did.jwt.db.service';
+export { IDidJwtService } from './services/interfaces/did.jwt.service';
+export { IDidJwt } from './interfaces/did-jwt/did.jwt.interface';

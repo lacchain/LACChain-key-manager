@@ -1,6 +1,6 @@
 {
   "name": "lacpass-key-manager",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Rest api for laccpass key manager",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -100,6 +100,7 @@
     "typeorm": "^0.2.41",
     "typeorm-seeding": "^1.6.1",
     "typescript-logging": "^2.1.0",
-    "typescript-logging-log4ts-style": "^2.1.0"
+    "typescript-logging-log4ts-style": "^2.1.0",
+    "did-jwt": "^5.5.0"
   }
 }
