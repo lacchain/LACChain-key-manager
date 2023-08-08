@@ -1,14 +1,16 @@
-export interface ISecp256k1FullKey {
+export interface IECFullKey {
   keyId: string;
   address: string;
   key: string;
+  type: string;
 }
 export type key = {
   keyId: string;
   address: string;
   publicKey: string;
+  type: string;
 };
-export interface Secp256k1Service {
+export interface ECService {
   show(id: string): Promise<any>;
 
   createKey(): Promise<key>;

@@ -1,6 +1,6 @@
 export { Secp256k1DbService } from './services/secp256k1Db.service';
-export { Secp256k1Service } from './services/interfaces/Secp256k1';
-export { Secp256k1 } from './entities/secp256k1.entity';
+export { ECService } from './services/interfaces/ec';
+export { EC } from './entities/ec.entity';
 export { Secp256k1SignTransactionServiceDb } from './services/signer.service';
 // eslint-disable-next-line max-len
 export { Secp256k1SignLacchainTransactionService } from './services/interfaces/secp256k1.lacchain.signer';

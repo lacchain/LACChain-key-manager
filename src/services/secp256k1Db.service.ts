@@ -1,20 +1,16 @@
 import { Service } from 'typedi';
 import { getRepository } from 'typeorm';
-import { Secp256k1 } from '../entities/secp256k1.entity';
+import { EC } from '../entities/ec.entity';
 import { ethers } from 'ethers';
 import { EntityMapper } from '@clients/mapper/entityMapper.service';
-import {
-  ISecp256k1FullKey,
-  Secp256k1Service,
-  key
-} from './interfaces/Secp256k1';
+import { IECFullKey, ECService, key } from './interfaces/ec';
 import { ErrorsMessages } from '../constants/errorMessages';
 import { BadRequestError } from 'routing-controllers';
 import { log4TSProvider } from '../config';
 
 @Service()
-export class Secp256k1DbService implements Secp256k1Service {
-  private readonly secp256k1Repository = getRepository<Secp256k1>(Secp256k1);
+export class Secp256k1DbService implements ECService {
+  private readonly secp256k1Repository = getRepository<EC>(EC);
   log = log4TSProvider.getLogger('didService');
 
   show(id: string) {
@@ -22,7 +18,7 @@ export class Secp256k1DbService implements Secp256k1Service {
   }
 
   async createKey(): Promise<key> {
-    const secp256k1 = EntityMapper.mapTo(Secp256k1, {});
+    const secp256k1 = EntityMapper.mapTo(EC, {});
     const account = ethers.Wallet.createRandom();
     secp256k1.key = account.privateKey;
     secp256k1.address = account.address;
@@ -30,7 +26,8 @@ export class Secp256k1DbService implements Secp256k1Service {
     return {
       keyId: secp256k1.keyId,
       address: account.address,
-      publicKey: account.publicKey
+      publicKey: account.publicKey,
+      type: secp256k1.keyType
     };
   }
 
@@ -38,7 +35,7 @@ export class Secp256k1DbService implements Secp256k1Service {
     return this.secp256k1Repository.delete(id);
   }
 
-  async getKeyByAddress(address: string): Promise<ISecp256k1FullKey> {
+  async getKeyByAddress(address: string): Promise<IECFullKey> {
     const r = await this.secp256k1Repository.findOne(undefined, {
       where: {
         address
@@ -52,7 +49,8 @@ export class Secp256k1DbService implements Secp256k1Service {
     return {
       key: r.key,
       keyId: r.keyId,
-      address: r.address
+      address: r.address,
+      type: r.keyType
     };
   }
 }
