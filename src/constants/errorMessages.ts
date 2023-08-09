@@ -20,7 +20,8 @@ export enum ErrorsMessages {
   BAD_REQUEST_ERROR = 'Bad request error',
   USER_ALREADY_EXISTS = 'A user with this email is already registered',
   KEY_NOT_FOUND = 'Key not found',
-  INVALID_ADDRESS = 'Invalid ripemd160 address'
+  INVALID_ADDRESS = 'Invalid ripemd160 address',
+  INVALID_25519_TYPE = 'Invalid 25519 type'
 }
 
 export const Errors = {

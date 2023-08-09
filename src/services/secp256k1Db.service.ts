@@ -22,6 +22,7 @@ export class Secp256k1DbService implements ECService {
     const account = ethers.Wallet.createRandom();
     secp256k1.key = account.privateKey;
     secp256k1.address = account.address;
+    secp256k1.publicKey = account.publicKey;
     await this.secp256k1Repository.insert(secp256k1);
     return {
       keyId: secp256k1.keyId,
@@ -55,7 +56,8 @@ export class Secp256k1DbService implements ECService {
       key: r.key,
       keyId: r.keyId,
       address: r.address,
-      type: r.keyType
+      type: r.keyType,
+      publicKey: r.publicKey
     };
   }
 }

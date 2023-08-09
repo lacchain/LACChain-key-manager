@@ -3,6 +3,7 @@ export interface IECFullKey {
   address: string;
   key: string;
   type: string;
+  publicKey: string;
 }
 export type key = {
   keyId: string;

@@ -1,5 +1,5 @@
 export { Secp256k1DbService } from './services/secp256k1Db.service';
-export { X25519DbService } from './services/x25519Db.service';
+export { Generic25519DbService } from './services/generic25519Db.service';
 export { ECService } from './services/interfaces/ec';
 export { EC } from './entities/ec.entity';
 export { Secp256k1SignTransactionServiceDb } from './services/signer.service';
@@ -17,3 +17,7 @@ export {
 export { DidJwtDbService } from './services/did.jwt.db.service';
 export { IDidJwtService } from './services/interfaces/did.jwt.service';
 export { IDidJwt } from './interfaces/did-jwt/did.jwt.interface';
+
+export { IDidCommService } from './services/interfaces/didcomm.service';
+export { DidCommDbService } from './services/didcomm/didcomm.db.service';
+export { IDidCommToEncryptData } from './interfaces/didcomm/didcomm.interface';
