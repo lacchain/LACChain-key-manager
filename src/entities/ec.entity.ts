@@ -16,8 +16,7 @@ export class EC extends Base {
   @Index({ unique: true })
   key!: string;
 
-  @Column()
-  @Index({ unique: true })
+  @Column({ unique: true, nullable: true })
   address!: string;
 
   @Column({

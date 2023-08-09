@@ -11,7 +11,7 @@ import { log4TSProvider } from '../config';
 @Service()
 export class Secp256k1DbService implements ECService {
   private readonly secp256k1Repository = getRepository<EC>(EC);
-  log = log4TSProvider.getLogger('didService');
+  log = log4TSProvider.getLogger('Secp256k1DbService');
 
   show(id: string) {
     return this.secp256k1Repository.findOne(id);
@@ -36,6 +36,11 @@ export class Secp256k1DbService implements ECService {
   }
 
   async getKeyByAddress(address: string): Promise<IECFullKey> {
+    if (!ethers.isAddress(address)) {
+      const message = ErrorsMessages.INVALID_ADDRESS;
+      this.log.info(message);
+      throw new BadRequestError(message);
+    }
     const r = await this.secp256k1Repository.findOne(undefined, {
       where: {
         address

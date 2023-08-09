@@ -1,4 +1,5 @@
 export { Secp256k1DbService } from './services/secp256k1Db.service';
+export { X25519DbService } from './services/x25519Db.service';
 export { ECService } from './services/interfaces/ec';
 export { EC } from './entities/ec.entity';
 export { Secp256k1SignTransactionServiceDb } from './services/signer.service';
