@@ -3,6 +3,7 @@ import { User } from '@entities/user.entity';
 import { JWT_SECRET, ACCESS_TOKEN_LIFE, JWT_SECRET_DEFAULT } from '@config';
 import { Service } from 'typedi';
 import { AuthInterface } from '@interfaces';
+import { createJWT, ES256KSigner } from 'did-jwt';
 
 @Service()
 export class JWTService {
@@ -46,5 +47,37 @@ export class JWTService {
         reject(new Error('Error verifying JWT'));
       }
     });
+  }
+
+  /**
+   * Creates a jwt did
+   * @param {string} subDid: sender did
+   * @param {string} aud
+   * @param {number} exp: in seconds
+   * @param {string} alg: 'ES256K' or 'EdDSA'
+   * @param {string} authKey: private key
+   * @return {Promise<string>}
+   */
+  async createDidJwt(
+    subDid: string,
+    aud: string,
+    exp = Math.floor(Date.now() / 1000 + 3600 * 24),
+    alg: string,
+    authKey: string
+  ): Promise<string> {
+    return createJWT(
+      {
+        sub: subDid,
+        aud,
+        exp
+      },
+      {
+        issuer: subDid,
+        signer: ES256KSigner(Buffer.from(authKey, 'hex'))
+      },
+      {
+        alg
+      }
+    );
   }
 }

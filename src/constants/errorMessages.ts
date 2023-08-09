@@ -19,7 +19,8 @@ export enum ErrorsMessages {
   INTERNAL_SERVER_ERROR = 'Internal Server Error',
   BAD_REQUEST_ERROR = 'Bad request error',
   USER_ALREADY_EXISTS = 'A user with this email is already registered',
-  KEY_NOT_FOUND = 'Key not found'
+  KEY_NOT_FOUND = 'Key not found',
+  INVALID_ADDRESS = 'Invalid ripemd160 address'
 }
 
 export const Errors = {
