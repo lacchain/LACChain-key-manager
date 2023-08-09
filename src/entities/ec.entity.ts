@@ -3,7 +3,8 @@ import { Base } from './base.entity';
 
 export enum KeyType {
   SECP256k1 = 'SECP256k1',
-  X25519 = 'X25519'
+  X25519 = 'X25519',
+  ED25519 = 'ED25519'
 }
 @Entity()
 export class EC extends Base {
@@ -18,6 +19,9 @@ export class EC extends Base {
 
   @Column({ unique: true, nullable: true })
   address!: string;
+
+  @Column({ name: 'public_key', unique: true, nullable: true })
+  publicKey!: string;
 
   @Column({
     name: 'key_type',
