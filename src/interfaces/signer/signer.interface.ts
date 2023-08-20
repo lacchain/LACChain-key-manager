@@ -13,3 +13,16 @@ export interface ILacchainTransaction {
 export interface ISignedTransaction {
   signedTransaction: string;
 }
+
+export interface IPlainMessage {
+  messageHash: string;
+  keyId?: string;
+}
+
+export interface ISignPlainMessageByAddress extends IPlainMessage {
+  address: string;
+}
+
+export interface ISecp256k1SignatureMessageResponse {
+  signature: string;
+}

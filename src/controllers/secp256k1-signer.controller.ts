@@ -11,6 +11,7 @@ import { Secp256k1SignTransactionServiceDb } from '../services/signer.service';
 import { Secp256k1SignLacchainTransactionServiceDb } from '../services/lacchain.signer.service';
 import { EthereumTxDTO } from '../dto/signEthereumTxDTO';
 import { LacchainTxDTO } from '@dto/signLacchainTxDTO';
+import { Secp256k1PlainMessageDTO } from '@dto/plainMessageDTO';
 
 @JsonController('/secp256k1/sign')
 @Service()
@@ -44,6 +45,19 @@ export class Secp256k1SignerController {
       return this.secp256k1LacchainSignerService.signEthereumBasedTransaction(
         signEthereumTxBody
       );
+    } catch (error: any) {
+      throw new BadRequestError(
+        error.detail ?? error.message ?? ErrorsMessages.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  @Post('/plain-message')
+  async signPlainMessage(
+    @Body({ validate: true }) message: Secp256k1PlainMessageDTO
+  ): Promise<any> {
+    try {
+      return this.secp256k1SignerService.signPlainMessage(message);
     } catch (error: any) {
       throw new BadRequestError(
         error.detail ?? error.message ?? ErrorsMessages.INTERNAL_SERVER_ERROR
