@@ -8,11 +8,7 @@ export { Secp256k1SignLacchainTransactionService } from './services/interfaces/s
 // eslint-disable-next-line max-len
 export { Secp256k1SignLacchainTransactionServiceDb } from './services/lacchain.signer.service';
 export { Secp256k1SignTransactionService } from './services/interfaces/secp256k1.signer';
-export {
-  IEthereumTransaction,
-  ISignedTransaction,
-  ILacchainTransaction
-} from './interfaces/signer/signer.interface';
+export * from './interfaces/signer/signer.interface';
 
 export { DidJwtDbService } from './services/did.jwt.db.service';
 export { IDidJwtService } from './services/interfaces/did.jwt.service';
@@ -21,3 +17,7 @@ export { IDidJwt } from './interfaces/did-jwt/did.jwt.interface';
 export { IDidCommService } from './services/interfaces/didcomm.service';
 export { DidCommDbService } from './services/didcomm/didcomm.db.service';
 export { IDidCommToEncryptData } from './interfaces/didcomm/didcomm.interface';
+// eslint-disable-next-line max-len
+export { Secp256k1GenericSignerService } from './services/interfaces/secp256k1.generic.signer';
+// eslint-disable-next-line max-len
+export { Secp256k1GenericSignerServiceDb } from './services/lacchain.generic.signer.service';
