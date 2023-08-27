@@ -1,11 +1,11 @@
 CREATE USER docker WITH PASSWORD 'password' CREATEDB;
 
-CREATE DATABASE lacpass_key_manager_development
+CREATE DATABASE lacchain_key_manager_development
 WITH OWNER = docker
 CONNECTION LIMIT = -1;
 
 
-CREATE DATABASE lacpass_key_manager
+CREATE DATABASE lacchain_key_manager
 WITH OWNER = docker
 CONNECTION LIMIT = -1;
 

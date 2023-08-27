@@ -1,4 +1,4 @@
-# LACPass key manager
+# LACChain key manager
 
 ## Getting Started
 

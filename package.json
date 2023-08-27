@@ -1,7 +1,7 @@
 {
-  "name": "lacpass-key-manager",
-  "version": "0.0.21",
-  "description": "Rest api for lacpass key manager",
+  "name": "lacchain-key-manager",
+  "version": "0.0.1",
+  "description": "Rest api for lacchain key manager",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
