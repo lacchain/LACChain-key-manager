@@ -7,7 +7,7 @@ import {
   ISecp256k1SignatureMessageResponse,
   ISignPlainMessageByAddress
 } from 'src/interfaces/signer/signer.interface';
-import { Wallet, isAddress } from 'ethers';
+import { SigningKey, isAddress } from 'ethers';
 import { Secp256k1GenericSignerService } from './interfaces/secp256k1.generic.signer';
 import { arrayify } from '@ethersproject/bytes';
 
@@ -16,10 +16,14 @@ import { arrayify } from '@ethersproject/bytes';
 export class Secp256k1GenericSignerServiceDb implements Secp256k1GenericSignerService {
   protected readonly secp256k1DbService = new Secp256k1DbService();
   log = log4TSProvider.getLogger('secp256k1-plain-message-signer');
+  /**
+   * @param {string} digest - message digest (32 bytes) to sign.
+   * @return {Promise<ISecp256k1SignatureMessageResponse>}
+   */
   async signPlainMessage(
-    message: ISignPlainMessageByAddress
+    digest: ISignPlainMessageByAddress
   ): Promise<ISecp256k1SignatureMessageResponse> {
-    const signerAddress = message.address;
+    const signerAddress = digest.address;
     if (!signerAddress || !isAddress(signerAddress)) {
       const message = ErrorsMessages.MISSING_PARAMS;
       this.log.info(message);
@@ -28,11 +32,12 @@ export class Secp256k1GenericSignerServiceDb implements Secp256k1GenericSignerSe
     const privateKey = await this.secp256k1DbService.getKeyByAddress(
       signerAddress
     );
-    const wallet = new Wallet(privateKey.key);
-    const messageHash = message.messageHash;
+    const messageHash = digest.messageHash;
     const messageHashBytes = arrayify(messageHash);
+    const signingKeyInstance = new SigningKey(privateKey.key);
+    const s = signingKeyInstance.sign(messageHashBytes).serialized;
     const signature = {
-      signature: await wallet.signMessage(messageHashBytes)
+      signature: s
     };
     return signature;
   }
