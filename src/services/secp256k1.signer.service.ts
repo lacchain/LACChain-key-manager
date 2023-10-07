@@ -4,7 +4,7 @@ import { log4TSProvider } from '../config';
 import { BadRequestError } from 'routing-controllers';
 import { Service } from 'typedi';
 import {
-  ISecp256k1SignatureMessageResponse,
+  IECDSASignatureMessageResponse,
   ISignPlainMessageByAddress
 } from 'src/interfaces/signer/signer.interface';
 import { SigningKey, isAddress } from 'ethers';
@@ -18,11 +18,11 @@ export class Secp256k1GenericSignerServiceDb implements Secp256k1GenericSignerSe
   log = log4TSProvider.getLogger('secp256k1-plain-message-signer');
   /**
    * @param {string} digest - message digest (32 bytes) to sign.
-   * @return {Promise<ISecp256k1SignatureMessageResponse>}
+   * @return {Promise<IECDSASignatureMessageResponse>}
    */
   async signPlainMessage(
     digest: ISignPlainMessageByAddress
-  ): Promise<ISecp256k1SignatureMessageResponse> {
+  ): Promise<IECDSASignatureMessageResponse> {
     const signerAddress = digest.address;
     if (!signerAddress || !isAddress(signerAddress)) {
       const message = ErrorsMessages.MISSING_PARAMS;
@@ -32,7 +32,7 @@ export class Secp256k1GenericSignerServiceDb implements Secp256k1GenericSignerSe
     const privateKey = await this.secp256k1DbService.getKeyByAddress(
       signerAddress
     );
-    const messageHash = digest.messageHash;
+    const messageHash = digest.message;
     const messageHashBytes = arrayify(messageHash);
     const signingKeyInstance = new SigningKey(privateKey.key);
     const s = signingKeyInstance.sign(messageHashBytes).serialized;

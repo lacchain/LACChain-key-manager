@@ -15,7 +15,7 @@ export interface ISignedTransaction {
 }
 
 export interface IPlainMessage {
-  messageHash: string;
+  message: string;
   keyId?: string;
 }
 
@@ -23,6 +23,10 @@ export interface ISignPlainMessageByAddress extends IPlainMessage {
   address: string;
 }
 
-export interface ISecp256k1SignatureMessageResponse {
+export interface ISignPlainMessageByCompressedPublicKey extends IPlainMessage {
+  compressedPublicKey: string;
+}
+
+export interface IECDSASignatureMessageResponse {
   signature: string;
 }

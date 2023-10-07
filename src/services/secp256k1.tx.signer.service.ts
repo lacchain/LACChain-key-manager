@@ -8,10 +8,11 @@ import {
   ISignedTransaction
 } from 'src/interfaces/signer/signer.interface';
 import { Secp256k1SignTransactionService } from './interfaces/secp256k1.signer';
-import { Secp256k1GenericSignerServiceDb } from './lacchain.generic.signer.service';
+import { Secp256k1GenericSignerServiceDb } from './secp256k1.signer.service';
 
 @Service()
-export class Secp256k1SignTransactionServiceDb extends Secp256k1GenericSignerServiceDb
+export class Secp256k1SignTransactionServiceDb
+  extends Secp256k1GenericSignerServiceDb
   implements Secp256k1SignTransactionService {
   log = log4TSProvider.getLogger('ethereum-signer');
   async signEthereumBasedTransaction(

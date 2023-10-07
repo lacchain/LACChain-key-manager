@@ -6,7 +6,8 @@ import {
 } from 'routing-controllers';
 import { Service } from 'typedi';
 import { ErrorsMessages } from '../constants/errorMessages';
-import { Secp256k1SignTransactionServiceDb } from '../services/signer.service';
+// eslint-disable-next-line max-len
+import { Secp256k1SignTransactionServiceDb } from '../services/secp256k1.tx.signer.service';
 // eslint-disable-next-line max-len
 import { Secp256k1SignLacchainTransactionServiceDb } from '../services/lacchain.signer.service';
 import { EthereumTxDTO } from '../dto/signEthereumTxDTO';
@@ -57,7 +58,11 @@ export class Secp256k1SignerController {
     @Body({ validate: true }) message: Secp256k1PlainMessageDTO
   ): Promise<any> {
     try {
-      return this.secp256k1SignerService.signPlainMessage(message);
+      return this.secp256k1SignerService.signPlainMessage({
+        address: message.address,
+        keyId: message.keyId,
+        message: message.messageHash
+      });
     } catch (error: any) {
       throw new BadRequestError(
         error.detail ?? error.message ?? ErrorsMessages.INTERNAL_SERVER_ERROR
