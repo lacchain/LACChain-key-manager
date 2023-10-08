@@ -1,6 +1,9 @@
 # Changelog
 
-### 0.0.7
+### 0.0.4
+
+* fix ecdsa-p256 signature format to r || s
+### 0.0.3
 
 ### Additions and Improvements
 

@@ -56,7 +56,12 @@ export class P256SignerServiceDb implements ECDSASignerService {
     const sign = createSign('SHA256');
     sign.update(message);
     sign.end();
-    const sig = '0x' + sign.sign(KeyObject.from(importedKey), 'hex');
+    const sig =
+      '0x' +
+      sign.sign(
+        { key: KeyObject.from(importedKey), dsaEncoding: 'ieee-p1363' },
+        'hex'
+      );
     const signature = {
       signature: sig
     };
