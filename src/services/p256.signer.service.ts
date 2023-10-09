@@ -47,8 +47,6 @@ export class P256SignerServiceDb implements ECDSASignerService {
       )
     };
 
-    console.log(jwk);
-
     const importedKey = await webcrypto.subtle.importKey(
       'jwk',
       jwk,
