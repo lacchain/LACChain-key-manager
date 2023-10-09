@@ -25,6 +25,18 @@ export interface ISignPlainMessageByAddress extends IPlainMessage {
 
 export interface ISignPlainMessageByCompressedPublicKey extends IPlainMessage {
   compressedPublicKey: string;
+  encoding?:
+    | 'base64'
+    | 'base64url'
+    | 'hex'
+    | 'binary'
+    | 'utf8'
+    | 'utf-8'
+    | 'utf16le'
+    | 'latin1'
+    | 'ascii'
+    | 'ucs2'
+    | 'ucs-2';
 }
 
 export interface IECDSASignatureMessageResponse {
