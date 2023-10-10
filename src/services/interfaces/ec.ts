@@ -4,10 +4,12 @@ export interface IECFullKey {
   key: string;
   type: string;
   publicKey: string;
+  x?: string;
+  y?: string;
 }
 export type key = {
   keyId: string;
-  address: string;
+  address?: string;
   publicKey: string;
   type: string;
 };

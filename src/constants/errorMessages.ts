@@ -21,7 +21,8 @@ export enum ErrorsMessages {
   USER_ALREADY_EXISTS = 'A user with this email is already registered',
   KEY_NOT_FOUND = 'Key not found',
   INVALID_ADDRESS = 'Invalid ripemd160 address',
-  INVALID_25519_TYPE = 'Invalid 25519 type'
+  INVALID_25519_TYPE = 'Invalid 25519 type',
+  INVALID_HEX_MESSAGE_ERROR = 'Expected a hex string'
 }
 
 export const Errors = {
